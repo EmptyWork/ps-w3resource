@@ -2,18 +2,34 @@ module NumberOne where
 
 import Prelude
 
-import Effect (Effect)
-import Effect.Class.Console (log)
+import Test.Spec (Spec, describe, it)
+import Test.Spec.Assertions (shouldEqual, shouldNotEqual)
 import W3Resource.NumberOne (numberOne)
 
-testNumberOne :: Effect Unit
+testNumberOne ∷ Spec Unit
 testNumberOne = do
-  log "NumberOne: If the two values are the same, then return triple their sum"
-  log "4 + 4 -> 24"
-  log $ show (numberOne 4 4)
-  log "-4 + -4 -> -24"
-  log $ show (numberOne (-4) (-4))
-  log "-5 + -4 -> -9"
-  log $ show (numberOne (-5) (-4))
-  log "2 + 9 -> 11"
-  log $ show (numberOne 2 9)
+  describe "NumberOne\t: if the two values are the same, then return triple their sum" do
+    
+    it "both positive but not same" do
+      numberOne 41 4 `shouldEqual` 45
+      numberOne 41 4 `shouldNotEqual` 0
+      numberOne 78 12 `shouldEqual` 90
+      numberOne 78 12 `shouldNotEqual` 0
+      numberOne 1 12 `shouldEqual` 13
+      numberOne 1 12 `shouldNotEqual` 0
+      numberOne 10 4 `shouldEqual` 14
+      numberOne 10 4 `shouldNotEqual` 0
+    
+    it "both negative but not same" do
+      numberOne (-1) (-9) `shouldEqual` (-10)
+      numberOne (-1) (-9) `shouldNotEqual` 0
+      numberOne (-100) (-1000) `shouldEqual` (-1100)
+      numberOne (-100) (-1000) `shouldNotEqual` 0
+    
+    it "both positive and also the same" do
+      numberOne 10 10 `shouldEqual` 60
+      numberOne 10 10 `shouldNotEqual` 0
+    
+    it "both negative and also the same" do
+      numberOne (-10) (-10) `shouldEqual` (-60)
+      numberOne (-10) (-10) `shouldNotEqual` 0
