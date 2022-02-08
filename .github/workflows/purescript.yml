@@ -31,8 +31,11 @@ jobs:
     - name: Install Spago
       run: npm install -g spago
 
-    - name: Build with Spago
-      run : spago build
+    - name: Install Pulp
+      run: npm install -g pulp
 
-    - name: Test with Spago
-      run : spago test
+    - name: Build with Pulp
+      run: pulp build
+
+    - name: Test with Pulp
+      run: pulp test
