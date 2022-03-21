@@ -9,6 +9,7 @@ import W3Resource.NumberTwo (numberTwo)
 testNumberTwo ∷ Spec Unit
 testNumberTwo = do
   describe "NumberTwo\t: if n is greater than 51 return triple the absolute difference" do
+
     it "higher by more than 10" do
       numberTwo 67 `shouldEqual` 48
       numberTwo 67 `shouldNotEqual` 0
